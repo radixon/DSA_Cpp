@@ -5,10 +5,8 @@
 template <typename T>
 class StaticArray{
     public:
-
-       
         // Constructor
-        StaticArray(size_t arr_size = 0) ;
+        StaticArray(size_t arr_size = 0);
 
         // Destructor
         ~StaticArray();
@@ -16,16 +14,32 @@ class StaticArray{
         // Copy Constructor
         StaticArray(const StaticArray& value);
 
+        // Move Constructor
+        StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
+
         // Overloaded Copy Assignment
         StaticArray &operator=(const StaticArray&);
 
-        // Copy List Initialization
-        std::pair<const T*, std::size_t> copy_arr;
+        /***************************************************************
+         * C++ Primer, Fifth Edition        Chapter 13                 *
+         * All five copy-control members hsould be thought of as a     *
+         * unit: Ordinarily, if a class defines any of these           *
+         * operations, it usually should define them all.  As we've    *
+         * seen, some classes must define the copy constructor,        *
+         * copy-assignment operator, and destructor to work correctly. *
+         * Such classes typically have a resource that the copy        *
+         * members must copy.  Ordinarily, copying a resource entails  *
+         * some amount of overhead.  Classes that define the move      *
+         * constructor and move-assignment operator can avoid this     *
+         * overhead in those circumstances where a copy isn't          *
+         * necessary.                                                  *
+         **************************************************************/
+
+
+        private:
+            T* array_;
+            size_t size_;
+
 
         
-
-    private:
-        size_t size_;
-        int* array_;
-
 };

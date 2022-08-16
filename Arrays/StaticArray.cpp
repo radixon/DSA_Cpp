@@ -2,10 +2,12 @@
 #include <new>
 
 // Constructor
+template <typename T>
 StaticArray::StaticArray(size_t arr_size = 0){
     size_ = arr_size;
     array_ = new T[size_];
 }
+
 
 // Destructor
 StaticArray::~StaticArray(){
@@ -13,13 +15,14 @@ StaticArray::~StaticArray(){
 }
 
 // Copy Constructor
+template <typename T>
 StaticArray::StaticArray(const StaticArray& value){
     size_ = value.size_;
     array_ = new T[value.size_]
 }
 
+// Move Constructor
+StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
 
-// Copy List Initialization
-std::pair<const T*, std::size_t> copy_arr const{
-    return {&arr[0], arr.size()};
-}
+// Overloaded Copy Assignment
+StaticArray &operator=(const StaticArray&);
