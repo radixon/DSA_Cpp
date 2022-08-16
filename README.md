@@ -14,6 +14,7 @@ Arrays store data in blocks of sequential memory.  These blocks of data must be 
 <br/>
 Arrays have a fixed capacity.  The capacity is the maximum nuber of elements that can be stored.  The size of an array is the current number of elements stored in the array.  To access an index in an array, the program multiplies the index by size_of(data). <br/>
 <br/>
+
 ## Time Complexity  <br/>
 Accessing an array index takes one computer step.  arr[n] is processes as size_of(data) * index. <br/>
 This has a constant time, O(1), time complexity. <br/>
