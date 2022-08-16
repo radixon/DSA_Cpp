@@ -3,26 +3,39 @@
 
 // Constructor
 template <typename T>
-StaticArray::StaticArray(size_t arr_size = 0){
-    size_ = arr_size;
-    array_ = new T[size_];
+StaticArray::StaticArray(const int& arr_size = 0) : size(arr_size > 0 ? arr_size : throw invalid_argument("Array size must be greater than 0!")), array_(new T[size])
+{
+    for(int i = 0; i < size_; i++){
+        array_[i] = nullptr;
+    }
 }
 
 
 // Destructor
-StaticArray::~StaticArray(){
+StaticArray::~StaticArray()
+{
     delete [] array_;
 }
 
 // Copy Constructor
 template <typename T>
-StaticArray::StaticArray(const StaticArray& value){
+StaticArray::StaticArray(const StaticArray& value)
+{
     size_ = value.size_;
     array_ = new T[value.size_]
 }
 
 // Move Constructor
-StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
+StaticArray(StaticArray &&rhs) noexcept : 
+{
+
+}
 
 // Overloaded Copy Assignment
 StaticArray &operator=(const StaticArray&);
+
+// Get the size of the array
+size_t getSize() const
+{
+    return size_;
+}

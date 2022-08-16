@@ -6,7 +6,7 @@ template <typename T>
 class StaticArray{
     public:
         // Constructor
-        StaticArray(size_t arr_size = 0);
+        StaticArray(const int& arr_size = 0);
 
         // Destructor
         ~StaticArray();
@@ -15,7 +15,7 @@ class StaticArray{
         StaticArray(const StaticArray& value);
 
         // Move Constructor
-        StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
+        StaticArray(StaticArray &&) noexcept;
 
         // Overloaded Copy Assignment
         StaticArray &operator=(const StaticArray&);
@@ -35,10 +35,13 @@ class StaticArray{
          * necessary.                                                  *
          **************************************************************/
 
+        // Return the size of the array
+        size_t getSize() const;
 
-        private:
-            T* array_;
-            size_t size_;
+
+    private:
+        T* array_;
+        size_t size_;
 
 
         
