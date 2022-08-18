@@ -1,41 +1,37 @@
 #include "StaticArray.h"
 #include <new>
 
-// Constructor
+//----------------------------------------------------------//
+//                  CONSTRUCTORS                            //
+//----------------------------------------------------------//
 template <typename T>
-StaticArray::StaticArray(const int& arr_size = 0) : size(arr_size > 0 ? arr_size : throw invalid_argument("Array size must be greater than 0!")), array_(new T[size])
-{
-    for(int i = 0; i < size_; i++){
-        array_[i] = nullptr;
-    }
+T StaticArray::StaticArray &operator[](const size_t explicit_capacity) : capacity_{explicit_capacity}, size_{ 1 }{
+    // Allocate memory on the heap
+    array_ = new T[capacity_];
+}
+
+template <typename T>
+T StaticArray::StaticArray(const T& data) : capacity_{explicit_capacity}, size_{ 1 }{
+    // Allocate memory on the heap
+    array_ = new T[capacity_];
 }
 
 
 // Destructor
-StaticArray::~StaticArray()
-{
+StaticArray::~StaticArray(){
     delete [] array_;
+    array_ = nullptr;
 }
 
 // Copy Constructor
 template <typename T>
-StaticArray::StaticArray(const StaticArray& value)
-{
+StaticArray::StaticArray(const StaticArray& value){
     size_ = value.size_;
     array_ = new T[value.size_]
 }
 
 // Move Constructor
-StaticArray(StaticArray &&rhs) noexcept : 
-{
-
-}
+StaticArray::StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
 
 // Overloaded Copy Assignment
-StaticArray &operator=(const StaticArray&);
-
-// Get the size of the array
-size_t getSize() const
-{
-    return size_;
-}
+StaticArray::StaticArray &operator=(const StaticArray&);
