@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-template <typename T>
+template <class T>
 class StaticArray{
 
     /****************************************************************
@@ -24,20 +24,28 @@ class StaticArray{
         //----------------------------------------------------------//
         //                  CONSTRUCTORS                            //
         //----------------------------------------------------------//
-        explicit StaticArray &operator[](const size_t explicit_capacity);
-        explicit StaticArray(const T& data);
+        StaticArray &operator[](const size_t explicit_capacity);
+        StaticArray(const T& data);
 
         // Destructor
         ~StaticArray();
 
         // Copy Constructor
-        StaticArray(const StaticArray& value);
+        StaticArray(const StaticArray& implicit_initialization);
 
         // Move Constructor
         StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
 
         // Overloaded Copy Assignment
         StaticArray &operator=(const StaticArray&);
+
+        // Overloaded lvalue [] Operator
+        T &operator[](int index);
+
+        // Overloaded rvalue [] Operator
+        T operator[](int index);
+
+        
 
         //----------------------------------------------------------//
         //                  PUBLIC METHOD MEMBERS                   //
@@ -57,6 +65,14 @@ class StaticArray{
         size_t size_;
         size_t capacity_;
 
+        // Swap Function
+        friend void swap(StaticArray& lhs, StaticArray& rhs);
+
+        // Overloaded ostream Operator
+		friend std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data);
+
+        // Overloaded istream Operator
+		friend std::istream& operator>>(std::istream& keyboard, StaticArray& data);
 
         
 };
