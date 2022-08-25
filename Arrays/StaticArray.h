@@ -1,10 +1,11 @@
-#ifndef     ARRAY_H_
-#define     ARRAY_H_
+#ifndef ARRAY_H_
+#define ARRAY_H_
 
 #include <iostream>
+#include <memory>
 
 
-class StaticArray{
+class sArray{
 
     /****************************************************************
     * C++ Primer, Fifth Edition        Chapter 13                   *
@@ -21,25 +22,38 @@ class StaticArray{
     * overhead in those circumstances where a copy isn't            *
     * necessary.                                                    *
     ****************************************************************/
+    protected:
+        //----------------------------------------------------------------------//
+        //                      DATA MEMBERS                                    //
+        //----------------------------------------------------------------------//
+        int *array_;
+        unsigned int capacity_;
+        unsigned int size_;
+
+        // Overloaded ostream Operator
+		friend std::ostream& operator<<(std::ostream& onscreen, const sArray& data);
+
+        // Overloaded istream Operator
+		//friend std::istream& operator>>(std::istream& keyboard, sArray& data);
 
     public:
         // CONSTRUCTORS
-        StaticArray(size_t capacity);
+        sArray(unsigned int capacity = 10);
 
         // Destructor
-        ~StaticArray();
+        ~sArray();
 
         // Copy Constructor
-        StaticArray(const StaticArray& rval);
+        sArray(const sArray& rval);
 
         // Overloaded Assignment
-        StaticArray& operator=(const StaticArray& value);
+        sArray& operator=(const sArray& value);
 
 
         //----------------------------------------------------------------------//
         //      len()       return the number of stored items.                  //
         //----------------------------------------------------------------------//
-        size_t len();
+        unsigned int len() const;
 
         //----------------------------------------------------------------------//
         //      iter_seq()  return stored items one-by-one in sequence order    //
@@ -49,26 +63,12 @@ class StaticArray{
         //----------------------------------------------------------------------//
         //      get_at(index)    return the ith item                            //
         //----------------------------------------------------------------------//
-        int& get_at(size_t index);
+        int& get_at(unsigned int index);
         
         //----------------------------------------------------------------------//
         //      set_at(index)    replace the ith item with new element          //
         //----------------------------------------------------------------------//
-        int& set_at(int index, int element);
-
-    protected:
-        //----------------------------------------------------------------------//
-        //                      DATA MEMBERS                                    //
-        //----------------------------------------------------------------------//
-        int *array_;
-        size_t capacity_;
-        size_t size_;
-
-        // Overloaded ostream Operator
-		friend std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data);
-
-        // Overloaded istream Operator
-		friend std::istream& operator>>(std::istream& keyboard, StaticArray& data);
+        void set_at(int index, const int &element);
 
 };
 
