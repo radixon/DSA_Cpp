@@ -1,8 +1,9 @@
-#pragma once
+#ifndef     ARRAY_H_
+#define     ARRAY_H_
 
 #include <iostream>
 
-template <class T>
+
 class StaticArray{
 
     /****************************************************************
@@ -20,53 +21,48 @@ class StaticArray{
     * overhead in those circumstances where a copy isn't            *
     * necessary.                                                    *
     ****************************************************************/
+
     public:
-        //----------------------------------------------------------//
-        //                  CONSTRUCTORS                            //
-        //----------------------------------------------------------//
-        StaticArray &operator[](const size_t explicit_capacity);
-        StaticArray(const T& data);
+        // CONSTRUCTORS
+        StaticArray(size_t capacity);
 
         // Destructor
         ~StaticArray();
 
         // Copy Constructor
-        StaticArray(const StaticArray& implicit_initialization);
+        StaticArray(const StaticArray& rval);
 
-        // Move Constructor
-        StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
+        // Overloaded Assignment
+        StaticArray& operator=(const StaticArray& value);
 
-        // Overloaded Copy Assignment
-        StaticArray &operator=(const StaticArray&);
 
-        // Overloaded lvalue [] Operator
-        T &operator[](int index);
+        //----------------------------------------------------------------------//
+        //      len()       return the number of stored items.                  //
+        //----------------------------------------------------------------------//
+        size_t len();
 
-        // Overloaded rvalue [] Operator
-        T operator[](int index);
+        //----------------------------------------------------------------------//
+        //      iter_seq()  return stored items one-by-one in sequence order    //
+        //----------------------------------------------------------------------//
+        void iter_seq();
 
+        //----------------------------------------------------------------------//
+        //      get_at(index)    return the ith item                            //
+        //----------------------------------------------------------------------//
+        int& get_at(size_t index);
         
+        //----------------------------------------------------------------------//
+        //      set_at(index)    replace the ith item with new element          //
+        //----------------------------------------------------------------------//
+        int& set_at(int index, int element);
 
-        //----------------------------------------------------------//
-        //                  PUBLIC METHOD MEMBERS                   //
-        //----------------------------------------------------------//
-        size_t size() const;
-        size_t capacity() const;
-        bool is_empty() const;
-        T& get_at(size_t index) const;
-        T& get_at(size_t index);
-
-
-    private:
-        //----------------------------------------------------------//
-        //                  DATA MEMBERS                            //
-        //----------------------------------------------------------//
-        T* array_;
-        size_t size_;
+    protected:
+        //----------------------------------------------------------------------//
+        //                      DATA MEMBERS                                    //
+        //----------------------------------------------------------------------//
+        int *array_;
         size_t capacity_;
-
-        // Swap Function
-        friend void swap(StaticArray& lhs, StaticArray& rhs);
+        size_t size_;
 
         // Overloaded ostream Operator
 		friend std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data);
@@ -74,5 +70,6 @@ class StaticArray{
         // Overloaded istream Operator
 		friend std::istream& operator>>(std::istream& keyboard, StaticArray& data);
 
-        
 };
+
+#endif

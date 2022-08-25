@@ -1,105 +1,118 @@
 #include "StaticArray.h"
 #include <iostream>
 #include <new>
-#include <stdexcept>
 
-//----------------------------------------------------------//
-//                  CONSTRUCTORS                            //
-//----------------------------------------------------------//
-template <class T>
-StaticArray<T>::StaticArray &operator[](const size_t explicit_capacity) : capacity_{explicit_capacity}, size_{ 1 }{
+
+// CONSTRUCTORS    
+StaticArray::StaticArray(size_t capacity)
+{
+    this->size_ = 0;
+    this->capacity_ = capacity;
+    std::cout << "Constructor capacity Called" << std::endl;
     // Allocate memory on the heap
-    array_ = new T[capacity_];
+    this->array_ = new int[this->capacity_];
 }
-
-template <class T>
-StaticArray<T>::StaticArray(const T& data) : capacity_{explicit_capacity}, size_{ 1 }{
-    // Allocate memory on the heap
-    array_ = new T[capacity_];
-}
-
 
 // Destructor
-StaticArray::~StaticArray(){
-    delete [] array_;
-    array_ = nullptr;
+StaticArray::~StaticArray()
+{
+    std::cout << "Destructor Called" << std::endl;
+    delete [] this->array_;
+    this->array_ = nullptr;
 }
 
 // Copy Constructor
-template <class T>
-StaticArray<T>::StaticArray(const StaticArray& implicit_initialization)
+StaticArray::StaticArray(const StaticArray& rval)
 {
-    size_ = implicit_initialization.size_;
-    array_ = new T[value.size_];
-    for(size_t i = 0; i < size_; i++)
+    this->size_ = rval.size_;
+    this->capacity_ = rval.size_;
+    std::cout << "Copy Constructor Called" << std::endl;
+    this->array_ = new int[this->capacity_];
+    for(int i = 0; i < this->size_; i++)
     {
-        array_[i] = implicit_initialization.array_[i];
+        array_[i] = rval.array_[i];
+    }
+    
+}
+
+// Overloaded Assignment
+StaticArray& StaticArray::operator=(const StaticArray& value)
+{
+    std::cout << "Overloaded Assignment Called" << std::endl;
+    if(this == &value)
+        return *this;
+
+    this->size_ = value.size_;
+    this->capacity_ = value.capacity_;
+    this->array_ = new int[value.capacity_];
+    for(int i = 0; i < size_; i++)
+    {
+        array_[i] = value.array_[i];
+    }
+
+    return *this;    
+}
+
+//----------------------------------------------------------------------//
+//      len()    return the size of the array                           //
+//----------------------------------------------------------------------//
+
+size_t StaticArray::len()
+{
+    return this->size_;
+}
+
+//----------------------------------------------------------------------//
+//      iter_seq()  return stored items one-by-one in sequence order    //
+//----------------------------------------------------------------------//
+void StaticArray::iter_seq()
+{
+    for(int i = 0; i < this->size_; i++)
+    {
+        std::cout << "index " << i << ": " << array_[i] << std::endl;
     }
 }
 
-// Move Constructor
-StaticArray::StaticArray(StaticArray &&argument) noexcept : arg(argument.arg);
+//----------------------------------------------------------------------//
+//      get_at(index)    return the ith item                            //
+//----------------------------------------------------------------------//
 
-// Overloaded Copy Assignment
-T& StaticArray::StaticArray &operator=(const StaticArray& rval)
+int& StaticArray::get_at(size_t index)
 {
-    std::cout << "Copy Assignment called" << "\n";
-
-    std::swap(*this,rval);
-    return *this;
+    return array_[index];
 }
 
-// Swap Function
-void swap(StaticArray& lhs, StaticArray& rhs)
-{
-    std::cout << "swap called" << "\n";
-    std::swap(lhs.array_, rhs.array_);
-}
 
-// Overloaded lvalue [] Operator
-T& StaticArray::operator[](int index)
-{
-    if(index < 0 || index >= capacity_)
-    {
-        std::throw out_of_range("Index value is out of range of the array memory");
-        return array_[index];
-    }
-}
+//----------------------------------------------------------------------//
+//      set_at(index)    replace the ith item with new element          //
+//----------------------------------------------------------------------//
 
-// Overloaded rvalue [] Operator
-const T& StaticArray::operator[](int index) const
+int& StaticArray::set_at(int index, int element)
 {
-    if(index < 0 || index >= capacity_)
-    {
-        std::throw out_of_range("Index value is out of range of the array memory");
-        return array_[index];
-    }
+    array_[index] = element;
+    return array_[index];
 }
 
 // Overloaded ostream Operator
-std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data)
+
+std::ostream& StaticArray::operator<<(std::ostream& onscreen, const StaticArray& data)
 {
     for(int i = 0; i < data.size_; i++)
     {
         onscreen << data.array_[i];
     }
+
     return onscreen;
 }
 
 // Overloaded istream Operator
-std::istream& operator>>(std::istream& keyboard, StaticArray& data)
+
+std::istream& StaticArray::operator>>(std::istream& keyboard,const StaticArray& data)
 {
-    for(size_t i = 0; i < data.size_; i++)
+    for(int i = 0; i < data.size_; i++)
     {
         keyboard >> data.array_[i];
     }
+
     return keyboard;
 }
-
-//----------------------------------------------------------//
-//                  PUBLIC METHOD MEMBERS                   //
-//----------------------------------------------------------//
-size_t size() const;
-
-
-size_t capacity() const;
