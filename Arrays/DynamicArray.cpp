@@ -1,12 +1,25 @@
-#include "StaticArray.h"
+#include "DynamicArray.h"
 #include <iostream>
 #include <memory>
 #include <stdexcept>
 
 //----------------------------------------------------------------------//
+//      Overload ostream Operator                                       //
+//----------------------------------------------------------------------//
+std::ostream& operator<<(std::ostream& onscreen, const DynamicArray& data)
+{
+    for(int i = 0; i < data.size_; i++)
+    {
+        onscreen << data.array_[i];
+    }
+
+    return onscreen;
+}
+
+//----------------------------------------------------------------------//
 //              CONSTRUCTOR                                             //
 //----------------------------------------------------------------------//   
-StaticArray::StaticArray(size_t cap) : capacity_{cap}
+DynamicArray::DynamicArray(size_t cap) : capacity_{cap}
 {
     std::cout << "Constructor capacity: " << capacity_ << '\n';
     this->size_ = 0;
@@ -17,7 +30,7 @@ StaticArray::StaticArray(size_t cap) : capacity_{cap}
 //----------------------------------------------------------------------//
 //              DESTRUCTOR                                              //
 //----------------------------------------------------------------------// 
-StaticArray::~StaticArray()
+DynamicArray::~DynamicArray()
 {
     std::cout << "Destructor Called" << '\n';
     delete[] this->array_;
@@ -27,7 +40,7 @@ StaticArray::~StaticArray()
 //----------------------------------------------------------------------//
 //              COPY CONSTRUCTOR                                        //
 //----------------------------------------------------------------------// 
-StaticArray::StaticArray(const StaticArray &rval)
+DynamicArray::DynamicArray(const DynamicArray &rval)
 {
     std::cout << "Copy Constructor Called" << '\n';
     this->size_ = rval.size_;
@@ -43,9 +56,9 @@ StaticArray::StaticArray(const StaticArray &rval)
 }
 
 //----------------------------------------------------------------------//
-//              OVERLOADED ASSIGNMENT                                   //
+//              OVERLOADED ASSIGNMENT  OPERATOR                         //
 //----------------------------------------------------------------------// 
-StaticArray& StaticArray::operator=(const StaticArray& value)
+DynamicArray& DynamicArray::operator=(const DynamicArray& value)
 {
     std::cout << "Overloaded Assignment Called" << '\n';
     if(this == &value)
@@ -66,7 +79,7 @@ StaticArray& StaticArray::operator=(const StaticArray& value)
 //      len()    return the size of the array                           //
 //----------------------------------------------------------------------//
 
-size_t StaticArray::len() const
+size_t DynamicArray::len() const
 {
     return this->size_;
 }
@@ -74,7 +87,7 @@ size_t StaticArray::len() const
 //----------------------------------------------------------------------//
 //      iter_seq()  return stored items one-by-one in sequence order    //
 //----------------------------------------------------------------------//
-void StaticArray::iter_seq()
+void DynamicArray::iter_seq()
 {
     for(int i = 0; i < this->size_; i++)
     {
@@ -86,7 +99,7 @@ void StaticArray::iter_seq()
 //      get_at(index)    return the ith item                            //
 //----------------------------------------------------------------------//
 
-int& StaticArray::get_at(size_t index)
+int& DynamicArray::get_at(size_t index)
 {
     if(index >= this->size_)
         throw"Invalid Index!";
@@ -94,15 +107,16 @@ int& StaticArray::get_at(size_t index)
     return this->array_[index];
 }
 
-
 //----------------------------------------------------------------------//
 //      set_at(index,element) replace the ith index with new element    //
 //----------------------------------------------------------------------//
 
-void StaticArray::set_at(size_t index, const int &element)
+void DynamicArray::set_at(size_t index, const int &element)
 {
     if(index >= this->size_ && index < this->capacity_)
+    {
         this->size_++;
+    }
     if(index >= this->capacity_)
     {
         std::cout << "Capacity Reached!" << '\n';
@@ -110,32 +124,33 @@ void StaticArray::set_at(size_t index, const int &element)
     }
     this->array_[index] = element;
 }
-
-
 //----------------------------------------------------------------------//
-//      Overload ostream Operator                                       //
+//      append()       add a value to the end of the array              //
 //----------------------------------------------------------------------//
-std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data)
+void DynamicArray::append(int value)
 {
-    for(int i = 0; i < data.size_; i++)
+    int *temp_array;
+    if(this->size_ == this->capacity_)
     {
-        onscreen << data.array_[i];
+        if(this->capacity_ > 1)
+            this->capacity_ *= 2;
+        else if(this->capacity_ < 2)
+            this->capacity_++;
+        else
+            this->capacity_ = 1;
+        temp_array = new int[this->capacity_];
+        for(int i = 0; i < this->size_; i++)
+        {
+            temp_array[i] = this->array_[i];
+        }
+        temp_array[this->size_] = value;
+        this->size_++;
+        delete [] array_;
+        this->array_ = temp_array;
     }
-
-    return onscreen;
-}
-
-/*
-//----------------------------------------------------------------------//
-//      Overload istream Operator                                       //
-//----------------------------------------------------------------------//
-std::istream& operator>>(std::istream& keyboard,const sArray& data)
-{
-    for(int i = 0; i < data.size_; i++)
+    else
     {
-        keyboard >> data.array_[i];
+        this->array_[this->size_] = value;
+        this->size_++;
     }
-
-    return keyboard;
 }
-*/

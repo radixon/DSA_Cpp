@@ -1,11 +1,11 @@
-#ifndef ARRAY_H_
-#define ARRAY_H_
+#ifndef ARRAY_D_
+#define ARRAY_D_
 
 #include <iostream>
 #include <memory>
 
 
-class StaticArray{
+class DynamicArray{
 
     /****************************************************************
     * C++ Primer, Fifth Edition        Chapter 13                   *
@@ -31,23 +31,48 @@ class StaticArray{
         size_t size_;
 
         // Overloaded ostream Operator
-		friend std::ostream& operator<<(std::ostream& onscreen, const StaticArray& data);
+		friend std::ostream& operator<<(std::ostream& onscreen, const DynamicArray& data);
 
         // Overloaded istream Operator
-		//friend std::istream& operator>>(std::istream& keyboard, StaticArray& data);
+		//friend std::istream& operator>>(std::istream& keyboard, DynamicArray& data);
 
+    /****************************************************************
+    * C++ Primer, Fifth Edition        Chapter 15                   *
+    *                                                               *
+    * Derived classes inherit the members of the base class.  When  *
+    * a derived class require differing definitions for operators,  *
+    * the derived class needs to override the definition inherited  *
+    * from the base class.  In C++, this is accomplished by defining*
+    * functions as virtual in the base class.
+    *                                                               *
+    * A derived class may access the public members of a base class,*
+    * but may not access the private members.  Specifiy base class  *
+    * members that allow access to derived classes, while           *
+    * prohibiting access by other users after a protected access    *
+    * specifier.
+    * 
+    * When the derivation is public, the public members of the base *
+    * class becomes part of the inheritance of the derived class as *
+    * welll.  In addition, an object of a publicly derived type can *
+    * bind to a pointer or refernce to the base type.
+    * 
+    * The scope of a derived class is nested inside the scope of the*
+    * base class.  As a result, there is no distinction between how *
+    * a member of the derived class uses members of the base class  *
+    * and how members defined in the base class are used.           *
+    ****************************************************************/
     public:
         // CONSTRUCTORS
-        StaticArray(size_t capacity = 10);
+        DynamicArray(size_t capacity = 10);
 
         // Destructor
-        ~StaticArray();
+        ~DynamicArray();
 
         // Copy Constructor
-        StaticArray(const StaticArray &rval);
+        DynamicArray(const DynamicArray &rval);
 
         // Overloaded Assignment
-        StaticArray& operator=(const StaticArray& value);
+        DynamicArray& operator=(const DynamicArray& value);
 
 
         //----------------------------------------------------------------------//
@@ -70,6 +95,14 @@ class StaticArray{
         //----------------------------------------------------------------------//
         void set_at(size_t index, const int &element);
 
+        //----------------------------------------------------------------------//
+        //      append()       add a value to the end of the array              //
+        //----------------------------------------------------------------------//
+        void append(int value);
+
 };
+
+
+
 
 #endif
