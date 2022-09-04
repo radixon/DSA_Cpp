@@ -96,9 +96,34 @@ class DynamicArray{
         void set_at(size_t index, const int &element);
 
         //----------------------------------------------------------------------//
-        //      append()       add a value to the end of the array              //
+        //      insert_last(x)       add a value to the end of the array        //
         //----------------------------------------------------------------------//
-        void append(int value);
+        void insert_last(int value);
+
+        //----------------------------------------------------------------------//
+        //      delete_last()       remove value at the end of the array        //
+        //----------------------------------------------------------------------//
+        void delete_last();
+
+        //----------------------------------------------------------------------//
+        //      insert_first(x)       add a value to the beginning of the array //
+        //----------------------------------------------------------------------//
+        void insert_first(int value);
+
+        //----------------------------------------------------------------------//
+        //      delete_first()       remove value at the beginning of the array //
+        //----------------------------------------------------------------------//
+        void delete_first();
+
+        //----------------------------------------------------------------------//
+        //      insert_at(i,x)       add a value at location i of the array     //
+        //----------------------------------------------------------------------//
+        void insert_at(size_t at_location, int value);
+
+        //----------------------------------------------------------------------//
+        //      delete_at(i)       remove location i of the array               //
+        //----------------------------------------------------------------------//
+        void delete_at(size_t at_location);
 
 };
 

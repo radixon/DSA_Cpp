@@ -28,9 +28,41 @@ int main(){
     std::cout << "foo sequence" << '\n';
 
     DynamicArray foo_tst = foo;
-    foo_tst.append(3);
+    foo_tst.insert_last(3);
     std::cout << "foo_tst sequence" << '\n';
     foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    std::cout << "foo_tst sequence after delete_last() function" << '\n';
+    foo_tst.delete_last();
+    foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    std::cout << "foo_tst sequence after insert_first(x) function" << '\n';
+    foo_tst.insert_first(379);
+    foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    std::cout << "foo_tst sequence after delete_first() function" << '\n';
+    foo_tst.delete_first();
+    foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    std::cout << "foo_tst sequence after insert_at(12,144) function" << '\n';
+    foo_tst.insert_at(12,144);
+    foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    std::cout << "foo_tst sequence after delete_at(7) function" << '\n';
+    foo_tst.delete_at(7);
+    foo_tst.iter_seq();
+
+    std::cout << "foo_tst size: " << foo_tst.len() << '\n';
 
 
 
