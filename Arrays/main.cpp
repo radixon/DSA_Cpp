@@ -1,6 +1,7 @@
 #include <iostream>
 #include "DynamicArray.h"
 #include "StaticArray.h"
+#include "Array_on_Stack.h"
 
 
 int main(){
@@ -63,6 +64,13 @@ int main(){
     foo_tst.iter_seq();
 
     std::cout << "foo_tst size: " << foo_tst.len() << '\n';
+
+    StackArray<int, 20> flea;
+    for(int i = 0; i < flea.len(); i++)
+    {
+        flea[i] = i*i - 2*i + 3;
+    }
+    flea.iter_seq();
 
 
 
