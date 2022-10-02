@@ -15,6 +15,14 @@ Arrays store data in blocks of sequential memory.  These blocks of data must be 
 Arrays have a fixed capacity.  The capacity is the maximum nuber of elements that can be stored.  The size of an array is the current number of elements stored in the array.  To access an index in an array, the program multiplies the index by size_of(data). <br/>
 <br/>
 
+# Arrays on the Heap <br/>
+<br/>
+Arrays on the heap must be manually destroyed with a destructor.  These arrays will not be removed from memory by the compiler when the method or program ends. <br/>
+<br/>
+# Arrays on the Stack <br/>
+Arrays on the stack are removed from memory at the end of the method in which the array was created.  The limitation is that the size of the array must be determined when the array is initialilzed. <br/>
+<br/>
+
 ## Time Complexity  <br/>
 Accessing an array index takes one computer step.  arr[n] is processes as size_of(data) * index. <br/>
 This has a constant time, O(1), time complexity. <br/>
