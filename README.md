@@ -19,6 +19,7 @@ Arrays have a fixed capacity.  The capacity is the maximum nuber of elements tha
 <br/>
 Arrays on the heap must be manually destroyed with a destructor.  These arrays will not be removed from memory by the compiler when the method or program ends. <br/>
 <br/>
+
 # Arrays on the Stack <br/>
 Arrays on the stack are removed from memory at the end of the method in which the array was created.  The limitation is that the size of the array must be determined when the array is initialilzed. <br/>
 <br/>
