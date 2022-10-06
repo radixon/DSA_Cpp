@@ -70,6 +70,7 @@ int main(){
     {
         flea[i] = i*i - 2*i + 3;
     }
+    std::cout << "flea sequence" << '\n';
     flea.iter_seq();
 
 

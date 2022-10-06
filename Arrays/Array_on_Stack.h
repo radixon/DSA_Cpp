@@ -4,7 +4,7 @@
 #include <iostream>
 #include <memory>
 
-template<typename T, size_t T_Size>
+template<typename T, std::size_t T_Size>
 class StackArray{
     protected:
         //----------------------------------------------------------------------//
@@ -13,28 +13,26 @@ class StackArray{
         T array_[T_Size];
 
     public:
-        // Overloaded Assignment
-        StackArray& operator=(const StackArray& value);
-
         // Overloaded [] operator
-        T& operator[](size_t index);
-        const T& operator[](size_t index) const;
+        T& operator[](std::size_t index) { return array_[index]; }
+        const T& operator[](std::size_t index) const { return array_[index]; }
 
 
         //----------------------------------------------------------------------//
         //      len()       return the number of stored items.                  //
         //----------------------------------------------------------------------//
-        constexpr size_t len() const;
+        constexpr std::size_t len() const { return T_Size; }
 
         //----------------------------------------------------------------------//
         //      iter_seq()  return stored items one-by-one in sequence order    //
         //----------------------------------------------------------------------//
-        void iter_seq();
-        
-        //----------------------------------------------------------------------//
-        //      set_at(index)    replace the ith item with new element          //
-        //----------------------------------------------------------------------//
-        void set_at(size_t index, const int &element);
+        void iter_seq()
+        {
+            for(int i = 0; i < T_Size; i++)
+            {
+                std::cout << "index " << i << ": " << this->array_[i] << std::endl;
+            }
+        }
 
 };
 
