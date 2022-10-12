@@ -1,7 +1,4 @@
 #include <iostream>
-#include "DynamicArray.h"
-#include "StaticArray.h"
-#include "Array_on_Stack.h"
 #include "DynamicArray.hpp"
 #include "StaticArray.hpp"
 #include "Array_on_Stack.hpp"
