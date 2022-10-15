@@ -1,4 +1,3 @@
-#include "StaticArray.h"
 #include <iostream>
 
 

@@ -1,6 +1,3 @@
-#include "Array_on_Stack.h"
-
-
 template<typename T, std::size_t T_Size>
 const T& StackArray<T, T_Size>::operator[](std::size_t index) const
 { 

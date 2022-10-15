@@ -2,8 +2,6 @@
 #define ARRAY_H_
 
 #include <iostream>
-#include <memory>
-
 
 
 class StaticArray{
@@ -72,5 +70,7 @@ class StaticArray{
         void set_at(size_t index, const int &element);
 
 };
+
+#include "StaticArray.hpp"
 
 #endif

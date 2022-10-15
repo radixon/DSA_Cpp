@@ -2,8 +2,6 @@
 #define ARRAY_D_
 
 #include <iostream>
-#include <memory>
-
 
 
 class DynamicArray{
@@ -97,16 +95,6 @@ class DynamicArray{
         void set_at(size_t index, const int &element);
 
         //----------------------------------------------------------------------//
-        //      insert_last(x)       add a value to the end of the array        //
-        //----------------------------------------------------------------------//
-        void insert_last(int value);
-
-        //----------------------------------------------------------------------//
-        //      delete_last()       remove value at the end of the array        //
-        //----------------------------------------------------------------------//
-        void delete_last();
-
-        //----------------------------------------------------------------------//
         //      insert_first(x)       add a value to the beginning of the array //
         //----------------------------------------------------------------------//
         void insert_first(int value);
@@ -115,6 +103,16 @@ class DynamicArray{
         //      delete_first()       remove value at the beginning of the array //
         //----------------------------------------------------------------------//
         void delete_first();
+
+        //----------------------------------------------------------------------//
+        //      insert_last(x)       add a value to the end of the array        //
+        //----------------------------------------------------------------------//
+        void insert_last(int value);
+
+        //----------------------------------------------------------------------//
+        //      delete_last()       remove value at the end of the array        //
+        //----------------------------------------------------------------------//
+        void delete_last();
 
         //----------------------------------------------------------------------//
         //      insert_at(i,x)       add a value at location i of the array     //
@@ -128,7 +126,6 @@ class DynamicArray{
 
 };
 
-
-
+#include "DynamicArray.hpp"
 
 #endif

@@ -29,4 +29,5 @@ class StackArray{
 
 };
 
+#include "Array_on_Stack.hpp"
 #endif
