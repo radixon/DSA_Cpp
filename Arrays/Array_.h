@@ -2,7 +2,6 @@
 #define ARRAY_A_
 
 #include <iostream>
-#include <memory>
 
 
 
