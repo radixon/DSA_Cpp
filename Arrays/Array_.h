@@ -55,7 +55,7 @@ class StaticArray{
 class DynamicArray : public StaticArray{
     public:
         // CONSTRUCTORS
-        DynamicArray(std::size_t capacity = 10) : StaticArray(capacity){};
+        using StaticArray::StaticArray;
 
         //----------------------------------------------------------------------//
         //      insert_first(x)       add a value to the beginning of the array //

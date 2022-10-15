@@ -1,8 +1,5 @@
 #include <iostream>
-#include "DynamicArray.h"
-#include "StaticArray.h"
-#include "Array_on_Stack.h"
-
+#include "Array_.h"
 
 int main(){
 
