@@ -1,27 +1,25 @@
 #pragma once
 
 template <typename T>
-class ListNode
-{
-    public:
-        ListNode(const T& data);
-        
-        //----------------------------------------------------------------------//
-        //      Contains the data in the element                                //
-        //----------------------------------------------------------------------//
-        const T& data;
-
-        //----------------------------------------------------------------------//
-        //      Contains the address of the next element of the list            //
-        //----------------------------------------------------------------------//
-        ListNode *next;
-        
-};
-
-template <typename T>
 class List
 {
     protected:
+        class ListNode
+        {
+            public:
+            ListNode(const T& data);
+        
+            //----------------------------------------------------------------------//
+            //      Contains the data in the element                                //
+            //----------------------------------------------------------------------//
+            const T& data;
+
+            //----------------------------------------------------------------------//
+            //      Contains the address of the next element of the list            //
+            //----------------------------------------------------------------------//
+            ListNode *next;
+        };
+
         ListNode<T> *head_;
         ListNode<T>* find_(const T& data);
     public:
@@ -47,7 +45,7 @@ class List
         //----------------------------------------------------------------------//
         //      insert_first(value)  insert value at the beginning of the list  //
         //----------------------------------------------------------------------//
-        void insert_first(T value);
+        void insert_first(const T& value);
 
         //----------------------------------------------------------------------//
         //      delete_first()  delete the value at the beginning of the list   //
@@ -60,19 +58,19 @@ class List
         void insert_last(T value);
 
         //----------------------------------------------------------------------//
-        //      delete_first()  delete the value at the end of the list         //
+        //      delete_last()  delete the value at the end of the list          //
         //----------------------------------------------------------------------//
         void delete_last();
 
         //----------------------------------------------------------------------//
         //      insert_at(idx,value)  insert value indexed at location idx      //
         //----------------------------------------------------------------------//
-        T insert_at(std::size_t idx, T value));
+        T insert_at(std::size_t idx, T value);
 
         //----------------------------------------------------------------------//
-        //      delete_at(idx, value)  set value x indexed at location idx      //
+        //      delete_at(idx, value)  set value indexed at location idx        //
         //----------------------------------------------------------------------//
-        void delete_at(std::size_t idx;
+        void delete_at(std::size_t idx);
         
 };
 

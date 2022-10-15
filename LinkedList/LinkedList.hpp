@@ -1,25 +1,34 @@
-#include "LinkedList.h"
-
-
+//----------------------------------------------------------------------//
+//              ListNode CONSTRUCTOR                                    //
+//----------------------------------------------------------------------//
 template <typename T>
-ListNode<T>::ListNode(const T & data) : data(data), next(nullptr) { }
+ListNode<T>::ListNode(const T& data) : data(data), next(nullptr) { }
 
+//----------------------------------------------------------------------//
+//              List CONSTRUCTOR                                        //
+//----------------------------------------------------------------------//
 template <typename T>
-List<T>::List(const T & data) : head_(nullptr) { }
+List<T>::List() : head_(nullptr) { }
 
+//----------------------------------------------------------------------//
+//              DESTRUCTOR                                              //
+//----------------------------------------------------------------------//
 template <typename T>
 List<T>::~List()
 {
     ListNode *traverse = head_;
     while (traverse != nullptr) 
     {
-        ListNode* toDelete = thru;
+        ListNode* toDelete = traverse;
         traverse = traverse->next;
         delete toDelete;
         toDelete = nullptr;
     }
 }
 
+//----------------------------------------------------------------------//
+//              OVERLOADED [] Operator                                  //
+//----------------------------------------------------------------------// 
 template <typename T>
 const T& List<T>::operator[](std::size_t idx) 
 {
@@ -37,13 +46,61 @@ const T& List<T>::operator[](std::size_t idx)
   return traverse->data;
 }
 
-template <typename T>
-typename List<T>::ListNode *List<T>::find_(const T& data) {
-  ListNode *traverse = head_;
-  while (traverse != nullptr) {
-    if (traverse->data == data) { return traverse; }
-    traverse = traverse->next;
-  }
 
-  return nullptr;  
+//----------------------------------------------------------------------//
+//      get_at(idx)  return value indexed at location idx               //
+//----------------------------------------------------------------------//
+T get_at(std::size_t idx);
+
+
+//----------------------------------------------------------------------//
+//      set_at(idx, value)  set value x indexed at location idx         //
+//----------------------------------------------------------------------//
+void set_at(std::size_t idx, T value);
+
+
+//----------------------------------------------------------------------//
+//      insert_first(value)  insert value at the beginning of the list  //
+//----------------------------------------------------------------------//
+template <typename T>
+void List<T>::insert_first(const T& value)
+{
+  // Create a new ListNode on the heap
+  ListNode *node = new ListNode(value);
+
+  // Set the new node's next pointer to the current head of the List
+  node->next = head_;
+
+  // Set the List's head pointer to the new node
+  head_ = node;
 }
+
+
+//----------------------------------------------------------------------//
+//      delete_first()  delete the value at the beginning of the list   //
+//----------------------------------------------------------------------//
+void delete_first();
+
+
+//----------------------------------------------------------------------//
+//      insert_last(value)  insert value at the end of the list         //
+//----------------------------------------------------------------------//
+void insert_last(T value);
+
+
+//----------------------------------------------------------------------//
+//      delete_first()  delete the value at the end of the list         //
+//----------------------------------------------------------------------//
+void delete_last();
+
+
+//----------------------------------------------------------------------//
+//      insert_at(idx,value)  insert value indexed at location idx      //
+//----------------------------------------------------------------------//
+T insert_at(std::size_t idx, T value);
+
+
+//----------------------------------------------------------------------//
+//      delete_at(idx, value)  set value x indexed at location idx      //
+//----------------------------------------------------------------------//
+void delete_at(std::size_t idx);
