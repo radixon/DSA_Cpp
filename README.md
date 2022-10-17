@@ -44,8 +44,28 @@ This is a binary search with an O(lg n) time complexity. <br/>
 [3] Erik Demaine, "6.006 INTRODUCTION TO ALGORITHMS, RECITATION 2," 2020 [Online]. Available: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r02/. <br/>
 [4] Wade Fagen-Ulmschneider, "Ordered Data Structures," 2022 [Online].  Available: https://www.coursera.org/learn/cs-fundamentals-2. <br/>
 
-## Linked Lists <br/>
+# Linked Lists <br/>
 <br/>
+A linked list is a data structure in which the objects are arranged in linear order.  Linked lists provide a simple, flexible representation for dynamic sets. <br/>
+<br/>
+Linked memory stores data together with a "link" to the location, in memory, of the next /and previous node depending on whether the list is singly or doubly linked. <br/>
+<br/>
+In C++, these lists are sequential lists of nodes.  A list node has both the data and accompanying link(s).  A linked list has zero or more ListNode elements linked together. <br/>
+<br/>
+Linked lists have a pointer called the "head pointer" that stores the link to the beginning of the list.  Linked lists have a pointer to the nullptr marking the end of the list which is called the tail. <br/>
+
+## Time Complexity  <br/>
+
+Inserting new data at the head of the list takes O(1) time.  The new data points to the first element and head points to the new node.<br/>
+<br/>
+Access data at a given index requires advancing through the list until the index is reached.  This is O(n), linear, time. <br/>
+<br/>
+Finding data in a linked list requires advancing through the list until the index is reached.  This is O(n) time. <br/>
+<br/>
+Inserting after a given index requires changine the next pointer of the given index to the new node, and pointing the next pointer of the new node to the next element.  This takes O(1) time.<br/>
+
+# References <br/>
+## Linked List <br/>
 [1] S. Lippman, J. Lajoie, B. Moo, C++ Primer (5th Edition). Westford, MA: Addison-Wesley Professional, 2012. <br/>
 [2] Erik Demaine, "6.006 INTRODUCTION TO ALGORITHMS, RECITATION 2," 2020 [Online]. Available: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_r02/. <br/>
 [3] Wade Fagen-Ulmschneider, "Ordered Data Structures," 2022 [Online].  Available: https://www.coursera.org/learn/cs-fundamentals-2. <br/>
