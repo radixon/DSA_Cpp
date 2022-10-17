@@ -1,5 +1,5 @@
 # DSA_Cpp
-Data Structures and Algorithms in C++ <br/>
+Data Structures and Algorithms in C++.  This repository will take a in depth look at both basic and advanced data structures and algorithms.  Basic Data-Structures to include arrays, sets, hashmaps, linked lists, stacks, queues, trees, and graphs.  Advanced Data-Structures to include priority queues, LRU caches, binary search trees, disjoint sets, tries, and skip lists. <br/>
 <br/>
 # Arrays <br/>
 
